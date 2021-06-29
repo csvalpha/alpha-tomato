@@ -58,6 +58,15 @@ class User < ApplicationRecord
     roles_users_not_to_have.map(&:destroy)
   end
 
+  def archive!
+    attributes.each_key do |attribute|
+      self[attribute] = nil unless %w[deleted_at updated_at created_at provider id uid].include? attribute
+    end
+    self.name = "Gearchiveerde gebruiker #{id}"
+    self.deactivated = true
+    save & versions.destroy_all
+  end
+
   # TODO: Spec this method
   # :nocov:
   def self.from_omniauth(auth)

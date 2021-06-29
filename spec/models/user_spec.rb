@@ -387,4 +387,30 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#archive!' do
+    context 'when archiving a user' do
+      subject(:user) { FactoryBot.create(:user) }
+
+      let(:nil_attributes) do
+        %w[avatar_thumb_url email birthday]
+      end
+
+      before { user.archive! && user.reload }
+
+      it { expect(user.archive!).to be true }
+      it { expect(user.name).to eq "Gearchiveerde gebruiker #{user.id}" }
+      it { expect(user.deactivated).to be true }
+      it { expect(user.versions).to be_empty }
+      it { expect { user.archive! }.not_to(change(user, :id)) }
+      it { expect { user.archive! }.not_to(change(user, :uid)) }
+      it { expect { user.archive! }.not_to(change(user, :provider)) }
+
+      it do
+        nil_attributes.each do |attribute|
+          expect(user[attribute]).to be_nil
+        end
+      end
+    end
+  end
 end
