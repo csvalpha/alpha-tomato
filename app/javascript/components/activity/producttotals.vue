@@ -9,14 +9,14 @@
           <tr>
             <th scope="col">Product</th>
             <th scope="col">Aantal keer besteld</th>
-            <th class="text-right" scope="col">Totaalbedrag</th>
+            <th class="text-end" scope="col">Totaalbedrag</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in orderTotals">
             <td>{{row.name}}</td>
             <td>{{row.amount}} x</td>
-            <td class="text-right">{{doubleToCurrency(row.price)}}</td>
+            <td class="text-end">{{doubleToCurrency(row.price)}}</td>
           </tr>
         </tbody>
       </table>

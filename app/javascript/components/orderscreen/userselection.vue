@@ -24,7 +24,7 @@
           </h3>
 
           <b-btn variant="secondary" v-b-modal.credit-mutation-modal>
-            <i class="fa fa-money mr-1"></i>
+            <i class="fa fa-money me-1"></i>
             Geld inleggen
           </b-btn>
         </div>
@@ -54,7 +54,7 @@
           </h4>
         </div>
 
-        <h3 class="col-1 pr-2 user-details-close" @click="selectUser(null)">
+        <h3 class="col-1 pe-2 user-details-close" @click="selectUser(null)">
           <i class="fa fa-times-circle pull-right"></i>
         </h3>
       </div>
@@ -68,11 +68,11 @@
              @keyup.up="decreaseHighlightedUserIndex" @keyup.down="increaseHighlightedUserIndex" autofocus>
 
       <button class="btn btn-secondary mt-3" @click="selectCash">
-        <i class="fa fa-money mr-1"></i>
+        <i class="fa fa-money me-1"></i>
         Betaal contant
       </button>
       <button class="btn btn-secondary mt-3" @click="selectPin">
-        <i class="fa fa-credit-card mr-1"></i>
+        <i class="fa fa-credit-card me-1"></i>
         Betaal met pin
       </button>
     </div>

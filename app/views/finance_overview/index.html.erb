@@ -8,19 +8,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <form class="form-inline" method="GET">
-        <div class="form-group mb-2">
-          <input type="date" class="form-control" id="staticEmail2" name="from_date" value="<%= @from_date %>">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <input type="date" class="form-control" name="to_date" value="<%= @to_date %>">
-        </div>
-        <button type="submit" class="btn btn-primary mb-2">Periode wijzigen</button>
-      </form>
+
+  <form method="GET" class="row mb-3">
+    <div class="col-2">
+      <input type="date" class="form-control" id="staticEmail2" name="from_date" value="<%= @from_date %>">
     </div>
-  </div>
+    <div class="col-2">
+      <input type="date" class="form-control" name="to_date" value="<%= @to_date %>">
+    </div>
+    <button type="submit" class="btn btn-primary col-2">Periode wijzigen</button>
+  </form>
 
 
   <div class="row">

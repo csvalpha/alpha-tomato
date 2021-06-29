@@ -7,10 +7,10 @@
   <div class="row justify-content-between">
     <div class="col-sm-12 col-md-6 py-2">
       <h1>
-        <%= fa_icon 'calendar', class: 'mr-2', text: @activity.title %>
+        <%= fa_icon 'calendar', class: 'me-2', text: @activity.title %>
       </h1>
       <% unless @activity.locked? %>
-        <button class="btn btn-sm btn-primary mb-2" role="button" data-toggle="modal" data-target="#edit_activity_modal">
+        <button class="btn btn-sm btn-primary mb-2" role="button" data-bs-toggle="modal" data-bs-target="#edit_activity_modal">
           <%= fa_icon 'pencil' %> Naam aanpassen
         </button>
       <% end %>
@@ -72,10 +72,12 @@
           <p class="card-text">
             Je kan bestellingen plaatsen in het streepscherm.
           </p>
-          <%= link_to order_screen_activity_url(@activity), class: 'btn btn-primary btn-block' do %>
-            Naar het streepscherm
-            <%= fa_icon 'calculator', class: 'ml-1' %>
-          <% end %>
+          <div class="d-grid">
+            <%= link_to order_screen_activity_url(@activity), class: 'btn btn-primary' do %>
+              Naar het streepscherm
+              <%= fa_icon 'calculator', class: 'ms-1' %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -86,24 +88,24 @@
     <div class="col-sm-12">
       <ul class="nav nav-tabs" id="activityTabs" role="tablist">
         <li class="nav-item">
-          <a aria-controls="summary" aria-selected="true" class="nav-link active" data-toggle="tab" href="#summary" id="summary-tab" role="tab">
+          <a aria-controls="summary" aria-selected="true" class="nav-link active" data-bs-toggle="tab" href="#summary" id="summary-tab" role="tab">
             Samenvatting
           </a>
         </li>
         <li class="nav-item">
-          <a aria-controls="credit_mutations" aria-selected="false" class="nav-link" data-toggle="tab" href="#credit_mutations" id="credit_mutations-tab" role="tab">
+          <a aria-controls="credit_mutations" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#credit_mutations" id="credit_mutations-tab" role="tab">
             Inleg en correcties
           </a>
         </li>
         <% if current_user.treasurer? %>
           <li class="nav-item">
-            <a aria-controls="orders" aria-selected="false" class="nav-link" data-toggle="tab" href="#orders" id="orders-tab" role="tab">
+            <a aria-controls="orders" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#orders" id="orders-tab" role="tab">
               Bestellingen
             </a>
           </li>
         <% end %>
         <li class="nav-item">
-          <a aria-controls="product_totals-tab" aria-selected="false" class="nav-link" data-toggle="tab" href="#product_totals" id="product_totals-tab" role="tab">
+          <a aria-controls="product_totals-tab" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#product_totals" id="product_totals-tab" role="tab">
             Producttotalen
           </a>
         </li>
@@ -134,7 +136,7 @@
                   <tr>
                     <th scope="col">Resultaat</th>
                     <th scope="col">Code</th>
-                    <th class="text-right" scope="col">Credit</th>
+                    <th class="text-end" scope="col">Credit</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -144,15 +146,15 @@
                       </td>
                       <td><%= t("codes.#{category.first}") %>
                       </td>
-                      <td class="text-right">
+                      <td class="text-end">
                         <%= number_to_currency(@revenue_by_category[category[0]] || 0, unit: '€') %>
                       </td>
                     </tr>
                   <% end %>
                   <tr>
-                    <th class="pl-4" scope="row">Totaal opbrengsten</th>
+                    <th class="ps-4" scope="row">Totaal opbrengsten</th>
                     <td></td>
-                    <td class="text-right">
+                    <td class="text-end">
                       <strong><%= number_to_currency(@revenue_total, unit: '€') %>
                       </strong>
                     </td>
@@ -166,8 +168,8 @@
                   <tr>
                     <th scope="col">Balans</th>
                     <th scope="col">Code</th>
-                    <th class="text-right" scope="col">Debit</th>
-                    <th class="text-right" scope="col">Credit</th>
+                    <th class="text-end" scope="col">Debit</th>
+                    <th class="text-end" scope="col">Credit</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -175,7 +177,7 @@
                     <td>Inleg Zatladder Inlegsysteem</td>
                     <td><%= t('codes.credit_mutation') %>                    </td>
                     <td></td>
-                    <td class="text-right">
+                    <td class="text-end">
                       <%= number_to_currency(@credit_mutations_total, unit: '€') %>
                     </td>
                   </tr>
@@ -183,7 +185,7 @@
                     <td>Contante bestellingen</td>
                     <td></td>
                     <td></td>
-                    <td class="text-right"><%= number_to_currency(@revenue_with_cash, unit: '€') %></td>
+                    <td class="text-end"><%= number_to_currency(@revenue_with_cash, unit: '€') %></td>
                   </tr>
                   <tr>
                     <td title="Contante inleg plus contante betalingen">
@@ -192,19 +194,19 @@
                       </strong>
                     </td>
                     <td><%= t('codes.cash') %></td>
-                    <td class="text-right"><%= number_to_currency(@cash_total, unit: '€') %></td>
+                    <td class="text-end"><%= number_to_currency(@cash_total, unit: '€') %></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>Omzet Pin</td>
                     <td><%= t('codes.pin') %></td>
-                    <td class="text-right"><%= number_to_currency(@revenue_with_pin, unit: '€') %></td>
+                    <td class="text-end"><%= number_to_currency(@revenue_with_pin, unit: '€') %></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>Omzet Zatladder Inlegsysteem</td>
                     <td><%= t('codes.credit_mutation') %></td>
-                    <td class="text-right"><%= number_to_currency(@revenue_with_credit, unit: '€') %></td>
+                    <td class="text-end"><%= number_to_currency(@revenue_with_credit, unit: '€') %></td>
                     <td></td>
                   </tr>
                   </tbody>

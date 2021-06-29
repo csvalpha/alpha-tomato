@@ -11,6 +11,15 @@ body {
   min-height: 100vh;
 }
 
+// Disable bootstrap default underlining links
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 // ANIMATIONS
 .slide-fade-enter-active,
 .slide-fade-leave-active {

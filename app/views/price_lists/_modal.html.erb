@@ -5,17 +5,13 @@
         <h5 class="modal-title">
           <%= @price_list.persisted? ? 'Prijslijst wijzigen' : 'Nieuwe prijslijst' %>
         </h5>
-        <button aria-label="close" class="close" data-dismiss="modal" type="button">
-          <span aria-hidden="true">
-            <%= fa_icon 'times' %>
-          </span>
-        </button>
+        <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button" />
       </div><%= simple_form_for @price_list, wrapper: :horizontal_form do |f| %>
         <div class="modal-body">
           <%= f.input :name, label: 'Naam', placeholder: 'Naam', required: true %>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-dismiss="modal" type="button">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
             Annuleren
           </button>
           <%= f.button :submit, 'Prijslijst opslaan', :data => {:disable_with => 'Bezig...'}, class: 'btn btn-primary' %>

@@ -7,18 +7,18 @@
       </h1>
 
       <form method="GET">
-        <select name="year" class="custom-select" onchange="this.form.submit()">
+        <select name="year" class="form-select" onchange="this.form.submit()">
           <%= options_for_select(@year_range, @year) %>
         </select>
       </form>
 
       <div class="row d-flex justify-content-center mt-4">
         <small class="col-4 col-md-2">Van</small>
-        <small class="col-8 col-md-4 text-right"><%= l @from_date, format: '%d %B %Y' %></small>
+        <small class="col-8 col-md-4 text-end"><%= l @from_date, format: '%d %B %Y' %></small>
       </div>
       <div class="row d-flex justify-content-center">
         <small class="col-4 col-md-2">Tot</small>
-        <small class="col-8 col-md-4 text-right"><%= l @to_date, format: '%d %B %Y' %></small>
+        <small class="col-8 col-md-4 text-end"><%= l @to_date, format: '%d %B %Y' %></small>
       </div>
 
       <table class="table table-striped mt-2">

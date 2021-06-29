@@ -11,7 +11,7 @@
     <div class="col-sm-12 col-md-6 py-2">
 
       <h1>
-        <%= fa_icon 'user', class: 'mr-2' %>
+        <%= fa_icon 'user', class: 'me-2' %>
         <%= @user.name %>
 
       </h1>
@@ -22,7 +22,7 @@
             <th scope="row">
               Geboortedatum
             </th>
-            <td class="text-right"><%= l @user.birthday, format: :long %>
+            <td class="text-end"><%= l @user.birthday, format: :long %>
             </td>
           </tr>
         <% end; %>
@@ -31,7 +31,7 @@
             <th scope="row">
               Email
             </th>
-            <td class="text-right"><%= @user.email %>
+            <td class="text-end"><%= @user.email %>
             </td>
           </tr>
         <% end %>
@@ -39,7 +39,7 @@
           <th scope="row">
             Aangemaakt op
           </th>
-          <td class="text-right"><%= l @user.created_at, format: :long %>
+          <td class="text-end"><%= l @user.created_at, format: :long %>
           </td>
         </tr>
         <% if @user.deactivated %>
@@ -47,7 +47,7 @@
             <th scope="row">
               Gedeactiveerd
             </th>
-            <td class="text-right"><%= @user.deactivated %>
+            <td class="text-end"><%= @user.deactivated %>
             </td>
           </tr>
         <% end %>
@@ -56,27 +56,27 @@
             Accountbron
           </th>
           <% if @user.provider == 'banana_oauth2' %>
-            <td class="text-right"><%= link_to 'C.S.V. Alpha', "#{Rails.application.config.x.banana_api_url}/users/#{@user.uid}" %>
+            <td class="text-end"><%= link_to 'C.S.V. Alpha', "#{Rails.application.config.x.banana_api_url}/users/#{@user.uid}" %>
             </td>
           <% else %>
-            <td class="text-right"><%= @user.provider || 'Handmatig aangemaakt' %>
+            <td class="text-end"><%= @user.provider || 'Handmatig aangemaakt' %>
 
             </td>
           <% end %></tr>
         </tbody>
       </table>
       <% if current_user.treasurer? %>
-        <button class="btn btn-sm btn-primary pull-right ml-2" data-target="#edit_user_modal" data-toggle="modal" role="button">
-          <%= fa_icon 'pencil', class: 'mr-1' %>
+        <button class="btn btn-sm btn-primary pull-right ms-2" data-bs-target="#edit_user_modal" data-bs-toggle="modal" role="button">
+          <%= fa_icon 'pencil', class: 'me-1' %>
           Gebruiker wijzigen
         </button>
-        <button class="btn btn-sm btn-secondary pull-right" data-target="#new_mutation_modal" data-toggle="modal" role="button">
-          <%= fa_icon 'plus', class: 'mr-1' %>
+        <button class="btn btn-sm btn-secondary pull-right" data-bs-target="#new_mutation_modal" data-bs-toggle="modal" role="button">
+          <%= fa_icon 'plus', class: 'me-1' %>
           Inleggen
         </button>
       <% end %>
       <h2>
-        <span class="mr-1"><%= 'Saldo:' %></span>
+        <span class="me-1"><%= 'Saldo:' %></span>
         <span class="<%= @user.credit <= 0 ? 'text-danger' : '' %>">
           <%= number_to_currency(@user.credit, unit: '€') %>
         </span>
@@ -88,12 +88,12 @@
           <ul class="nav nav-tabs card-header-tabs" id="infoTabs" role="tablist">
             <li class="nav-item">
 
-              <a aria-controls="creditInfo" aria-selected="true" class="nav-link active" data-toggle="tab" href="#creditInfo" id="creditInfo-tab" role="tab">
+              <a aria-controls="creditInfo" aria-selected="true" class="nav-link active" data-bs-toggle="tab" href="#creditInfo" id="creditInfo-tab" role="tab">
                 Inleggen
               </a></li>
             <li class="nav-item">
 
-              <a aria-controls="roleInfo" aria-selected="false" class="nav-link" data-toggle="tab" href="#roleInfo" id="roleInfo-tab" role="tab">
+              <a aria-controls="roleInfo" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#roleInfo" id="roleInfo-tab" role="tab">
                 Rollen en rechten
               </a></li>
           </ul>
@@ -160,12 +160,12 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs" id="userTabs" role="tablist">
           <li class="nav-item">
-            <a aria-controls="orders" aria-selected="true" class="nav-link active" data-toggle="tab" href="#orders" id="orders-tab" role="tab">
+            <a aria-controls="orders" aria-selected="true" class="nav-link active" data-bs-toggle="tab" href="#orders" id="orders-tab" role="tab">
               Bestellingen
             </a>
           </li>
           <li class="nav-item">
-            <a aria-controls="creditMutations" aria-selected="false" class="nav-link" data-toggle="tab" href="#creditMutations" id="creditMutations-tab" role="tab">
+            <a aria-controls="creditMutations" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#creditMutations" id="creditMutations-tab" role="tab">
               Inleg en saldocorrecties
             </a></li>
         </ul>
@@ -184,7 +184,7 @@
                   <th scope="col"> #</th>
                   <th scope="col">Datum</th>
                   <th scope="col">Beschrijving</th>
-                  <th class="text-right" scope="col">Bedrag</th>
+                  <th class="text-end" scope="col">Bedrag</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -203,7 +203,7 @@
                       <th scope="row"><%= mutation.id %></th>
                       <td><%= l(mutation.created_at, format: :with_year) %></td>
                       <td><%= mutation.description %></td>
-                      <td class="text-right"><%= number_to_currency(mutation.amount, unit: '€') %></td>
+                      <td class="text-end"><%= number_to_currency(mutation.amount, unit: '€') %></td>
                     </tr>
                   <% end %>
                 <% end %>

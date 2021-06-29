@@ -5,20 +5,16 @@
         <h5 class="modal-title">
           Nieuwe activiteit
         </h5>
-        <button aria-label="close" class="close" data-dismiss="modal" type="button">
-          <span aria-hidden="true">
-            <%= fa_icon 'times' %>
-          </span>
-        </button>
+        <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button" />
       </div><%= simple_form_for @activity, wrapper: :horizontal_form do |f| %>
-        <div class="modal-body" id="activities_modal">
+        <div class="modal-body d-grid gap-2" id="activities_modal">
           <%= f.input :title, label: 'Titel', placeholder: 'Titel', required: true %>
           <%= f.input :start_time, as: :string, label: 'Begintijd', order: %i[hour minute day month year] %>
           <%= f.input :end_time, as: :string, label: 'Eindtijd', order: %i[hour minute day month year] %>
 
-          <div class="form-group row">
+          <div class="row">
             <label class="col-3 col-form-label" for="activity_price_list">
-              <abbr class="mr-1" title="required">*</abbr>
+              <abbr class="me-1" title="required">*</abbr>
               Prijslijst
 
             </label>
@@ -30,7 +26,7 @@
                        class="form-control" placeholder="Begin met typen..." required="true" type="text"
                        v-bind:aria-expanded="dropdownOpened" v-model="query"/>
                 <div class="row">
-                  <ul class="dropdown-menu ml-3" v-bind:class="{'show':dropdownOpened}">
+                  <ul class="dropdown-menu ms-3" v-bind:class="{'show':dropdownOpened}">
 
                     <li class="dropdown-item" v-for="(suggestion, index) in suggestions" v-on:click.prevent="suggestionClicked(index)">
                       <a href="#">
@@ -44,7 +40,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-dismiss="modal" type="button">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
             Annuleren
           </button>
           <%= f.button :submit, 'Activiteit opslaan', :data => {:disable_with => 'Bezig...'}, class: 'btn btn-primary' %>

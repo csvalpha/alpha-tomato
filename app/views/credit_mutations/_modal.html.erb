@@ -6,19 +6,15 @@
         <h5 class="modal-title">
           <%= @new_mutation.persisted? ? 'Inleg wijzigen' : 'Nieuwe inleg' %>
         </h5>
-        <button aria-label="close" class="close" data-dismiss="modal" type="button">
-          <span aria-hidden="true">
-            <%= fa_icon 'times' %>
-          </span>
-        </button>
+        <button aria-label="close" class="btn-close" data-bs-dismiss="modal" type="button" />
       </div><%= simple_form_for @new_mutation, wrapper: :horizontal_form do |f| %>
-        <div class="modal-body" id="mutations_modal">
+        <div class="modal-body d-grid gap-2" id="mutations_modal">
           <%= f.input :description, label: 'Beschrijving', placeholder: 'Beschrijving' %>
           <%= f.input :amount, as: :float, label: 'Bedrag', placeholder: '2.00' %>
 
-          <div class="form-group row">
+          <div class="row">
             <label class="col-3 col-form-label" for="mutations_users">
-              <abbr class="mr-1" title="required">*</abbr>
+              <abbr class="me-1" title="required">*</abbr>
               Gebruiker
             </label>
             <template>
@@ -29,7 +25,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-dismiss="modal" type="button">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
             Annuleren
           </button>
           <%= f.button :submit, 'Inleg opslaan', :data => {:disable_with => 'Bezig...'}, class: 'btn btn-primary' %>

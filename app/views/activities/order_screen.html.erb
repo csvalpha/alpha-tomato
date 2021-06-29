@@ -4,19 +4,17 @@
 
 %>
   <b-modal id="credit-mutation-modal" ref="creditMutationModal" title="Inleggen">
-    <form :class="{ 'was-validated': creditMutationFormInvalid }" class="col-12 mt-2" novalidate="">
-      <div class="form-group row">
+    <form :class="{ 'was-validated': creditMutationFormInvalid }" class="col-12 mt-2 d-grid gap-2" novalidate="">
+      <div class="row">
         <div class="col-4">
-          <label class="col-form-label" for="creditMutationAmountInput">
+          <label class="form-label" for="creditMutationAmountInput">
             Inleg *
           </label>
         </div>
         <div class="col-8">
           <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <%= fa_icon 'euro' %>
-              </div>
+            <div class="input-group-text">
+              <%= fa_icon 'euro' %>
             </div>
 
             <input class="form-control" id="creditMutationAmountInput" placeholder="10.00" required="" type="text" v-model="creditMutationAmount"/>
@@ -26,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="row">
         <div class="col-4">
           <label class="col-form-label" for="creditMutationDescriptionInput">
             Beschrijving *
@@ -39,7 +37,7 @@
         </div>
       </div>
       <fieldset disabled="true">
-        <div class="form-group row">
+        <div class="row">
           <label class="col-4 col-form-label">
             Activiteit *
           </label>
@@ -53,7 +51,7 @@
       </fieldset>
     </form>
     <div slot="modal-footer">
-      <button aria-label="Close" class="btn btn-secondary mr-1" data-dismiss="modal" type="button">
+      <button aria-label="Close" class="btn btn-secondary me-1" data-bs-dismiss="modal" type="button">
         Annuleren
       </button>
       <button @click="saveCreditMutation" class="btn btn-primary" type="sumbit" :disabled="isSubmitting">
@@ -75,7 +73,7 @@
         </span>
       </li>
       <li class="header-nav-item">
-        <span class="mr-3">
+        <span class="me-3">
           <%= @activity.title %>
         </span>
         <small class="font-weight-light d-inline-block">
@@ -88,11 +86,7 @@
         <div class="col-12 pt-2 text-center">
           <div class="alert alert-dismissible fade show <%= flash_class key %>" role="alert">
             <%= value %>
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                  <span aria-hidden="true">
-                    <%= fa_icon 'times' %>
-                  </span>
-            </button>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button" />
           </div>
         </div>
       <% end %>
@@ -100,10 +94,10 @@
     <div class="row col-lg-4 pull-right no-gutters" style="flex-direction: row-reverse">
       <b-btn class="m-3" v-on:click="keepUserSelected = !keepUserSelected" variant="outline-secondary">
         <span v-if="keepUserSelected">
-          <%= fa_icon 'check-square lg', class: 'mr-1' %>
+          <%= fa_icon 'check-square lg', class: 'me-1' %>
         </span>
         <span v-if="!keepUserSelected">
-          <%= fa_icon 'square lg', class: 'mr-1' %>
+          <%= fa_icon 'square lg', class: 'me-1' %>
         </span>
         <span>
           Persoon onthouden
@@ -139,7 +133,7 @@
               <span :title="doubleToCurrency(orderRow.productPrice.price) + ' p.s.'">
                 {{doubleToCurrency(orderRow.productPrice.price * orderRow.amount)}}
               </span>
-              <span @click="dropOrderRow(index)" class="order-rows-row-remove ml-1">
+              <span @click="dropOrderRow(index)" class="order-rows-row-remove ms-1">
                 <%= fa_icon 'times-circle lg' %>
               </span>
             </div>
@@ -167,38 +161,41 @@
         </div>
       </div>
       <div class="orders-confirmation">
-        <div class="btn-group btn-group-lg btn-block" role="group" v-if="payWithPin && <%= @sumup_enabled.to_s %>">
-          <a role="button" class="btn btn-success col-9"
-             @click="confirmOrder"
-             :class="{ 'disabled': orderConfirmButtonDisabled() }"
-             :href="sumupUrl">
+        <div class="d-grid">
+          <div class="btn-group btn-group-lg" role="group" v-if="payWithPin && <%= @sumup_enabled.to_s %>">
+            <a role="button" class="btn btn-success col-9"
+               @click="confirmOrder"
+               :class="{ 'disabled': orderConfirmButtonDisabled() }"
+               :href="sumupUrl">
             <span class="text-uppercase">
               Sumup betaling
             </span>
-          </a>
-          <button type="button" class="btn btn-dark" v-bind:disabled="orderConfirmButtonDisabled()"
-                  @click="confirmOrder">
-            <%= fa_icon 'money' %>
-          </button>
+            </a>
+            <button type="button" class="btn btn-dark" v-bind:disabled="orderConfirmButtonDisabled()"
+                    @click="confirmOrder">
+              <%= fa_icon 'money' %>
+            </button>
+          </div>
         </div>
-
-        <button @click="confirmOrder" class="btn btn-block btn-lg btn-success"
-                :class="{ 'btn-warning' : (orderRequiresAge() && selectedUser && selectedUser.minor) }"
-                :disabled="orderConfirmButtonDisabled()"
-                v-if="!payWithPin || !<%= @sumup_enabled.to_s %>">
+        <div class="d-grid">
+          <button @click="confirmOrder" class="btn btn-lg btn-success"
+                  :class="{ 'btn-warning' : (orderRequiresAge() && selectedUser && selectedUser.minor) }"
+                  :disabled="orderConfirmButtonDisabled()"
+                  v-if="!payWithPin || !<%= @sumup_enabled.to_s %>">
           <span class="text-uppercase">
             Bestelling plaatsen
           </span>
-          <br/>
-          <small v-if="orderRequiresAge() && selectedUser && selectedUser.minor">
+            <br/>
+            <small v-if="orderRequiresAge() && selectedUser && selectedUser.minor">
             <span>
               <%= fa_icon 'exclamation-triangle ' %>
             </span>
-            <span>
+              <span>
               {{selectedUser.name}} is minderjarig!
             </span>
-          </small>
-        </button>
+            </small>
+          </button>
+        </div>
       </div>
     </div>
   </div>

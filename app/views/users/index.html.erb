@@ -9,9 +9,9 @@
   <%= content_tag :div, id: 'users-index', data: {manual_users: @manual_users_json, amber_users: @amber_users_json, inactive_users: @inactive_users_json} do %>
     <div class="d-flex justify-content-between align-items-center">
       <h3>Handmatig aangemaakte gebruikers</h3>
-      <button class="btn btn-sm btn-primary" data-target="#edit_user_modal" data-toggle="modal" role="button">
+      <button class="btn btn-sm btn-primary" data-bs-target="#edit_user_modal" data-bs-toggle="modal" role="button">
         <%= fa_icon 'plus' %>
-        <span class="d-none d-md-inline ml-1">
+        <span class="d-none d-md-inline ms-1">
           Nieuwe gebruiker
         </span>
       </button>
@@ -21,9 +21,9 @@
     <div class="d-flex justify-content-between align-items-center">
       <h3>Amber gebruikers</h3>
       <span>
-        <%= link_to refresh_user_list_users_path, class: 'btn btn-primary btn-sm mr-1' do %>
+        <%= link_to refresh_user_list_users_path, class: 'btn btn-primary btn-sm me-1' do %>
           <%= fa_icon 'refresh' %>
-          <span class="d-none d-md-inline ml-1">Synchroniseer gebruikers</span>
+          <span class="d-none d-md-inline ms-1">Synchroniseer gebruikers</span>
         <% end %>
       </span>
     </div>

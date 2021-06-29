@@ -1,73 +1,75 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <span class="navbar-brand">
-    <%= image_tag '/images/tomato.svg', alt: 'SOFIA icon', title: 'SOFIA', height: '25px' %>
-  </span>
-  <button aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#mainNavigation" data-toggle="collapse" type="button">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="mainNavigation">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= nav_link root_path, class: 'nav-link' do %>
-          <%= fa_icon 'home', class: 'mr-2', text: 'Home' %>
+  <div class="container-fluid">
+    <span class="navbar-brand">
+      <%= image_tag '/images/tomato.svg', alt: 'SOFIA icon', title: 'SOFIA', height: '25px' %>
+    </span>
+    <button aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#mainNavigation" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavigation">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= nav_link root_path, class: 'nav-link' do %>
+            <%= fa_icon 'home', class: 'me-2', text: 'Home' %>
+          <% end %>
+        </li>
+        <% if current_user&.main_bartender? || current_user&.treasurer? %>
+          <li class="nav-item">
+            <%= nav_link activities_path, class: 'nav-link' do %>
+              <%= fa_icon 'calendar', class: 'me-2', text: 'Activiteiten' %>
+            <% end %>
+          </li>
         <% end %>
-      </li>
-      <% if current_user&.main_bartender? || current_user&.treasurer? %>
-        <li class="nav-item">
-          <%= nav_link activities_path, class: 'nav-link' do %>
-            <%= fa_icon 'calendar', class: 'mr-2', text: 'Activiteiten' %>
-          <% end %>
-        </li>
-      <% end %>
-      <% if current_user&.treasurer? %>
-        <li class="nav-item">
-          <%= nav_link users_path, class: 'nav-link' do %>
-            <%= fa_icon 'users', class: 'mr-2', text: 'Gebruikers' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link price_lists_path, class: 'nav-link' do %>
-            <%= fa_icon 'beer', class: 'mr-2', text: 'Prijslijsten' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link credit_mutations_path, class: 'nav-link' do %>
-            <%= fa_icon 'money', class: 'mr-2', text: 'Inleg en saldocorrecties' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link zatladder_index_path, class: 'nav-link' do %>
-            <%= fa_icon 'list', class: 'mr-2', text: 'Zatladder' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link invoices_path, class: 'nav-link' do %>
-            <%= fa_icon 'shopping-cart', class: 'mr-2', text: 'Facturen' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link payments_path, class: 'nav-link' do %>
-            <%= fa_icon 'credit-card', class: 'mr-2', text: 'Betalingen' %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= nav_link finance_overview_index_path, class: 'nav-link' do %>
-            <%= fa_icon 'money', class: 'mr-2', text: 'Financien' %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-    <% if current_user %>
-      <div class="navbar-nav">
-        <%= nav_link current_user, class: 'nav-item' do %>
-        <span class="nav-link">
-          <%= fa_icon 'user-circle-o', class: 'mr-2', text: current_user.name %>
-        </span>
+        <% if current_user&.treasurer? %>
+          <li class="nav-item">
+            <%= nav_link users_path, class: 'nav-link' do %>
+              <%= fa_icon 'users', class: 'me-2', text: 'Gebruikers' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link price_lists_path, class: 'nav-link' do %>
+              <%= fa_icon 'beer', class: 'me-2', text: 'Prijslijsten' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link credit_mutations_path, class: 'nav-link' do %>
+              <%= fa_icon 'money', class: 'me-2', text: 'Inleg en saldocorrecties' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link zatladder_index_path, class: 'nav-link' do %>
+              <%= fa_icon 'list', class: 'me-2', text: 'Zatladder' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link invoices_path, class: 'nav-link' do %>
+              <%= fa_icon 'shopping-cart', class: 'me-2', text: 'Facturen' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link payments_path, class: 'nav-link' do %>
+              <%= fa_icon 'credit-card', class: 'me-2', text: 'Betalingen' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= nav_link finance_overview_index_path, class: 'nav-link' do %>
+              <%= fa_icon 'money', class: 'me-2', text: 'Financien' %>
+            <% end %>
+          </li>
         <% end %>
-      </div>
-      <div class="navbar-text small">
-        <%= link_to '(uitloggen)', destroy_user_session_path, class: 'ml-1', method: :delete %>
-      </div>
-    <% end %>
+      </ul>
+      <% if current_user %>
+        <div class="navbar-nav">
+          <%= nav_link current_user, class: 'nav-item' do %>
+          <span class="nav-link">
+            <%= fa_icon 'user-circle-o', class: 'me-2', text: current_user.name %>
+          </span>
+          <% end %>
+        </div>
+        <div class="navbar-text small">
+          <%= link_to '(uitloggen)', destroy_user_session_path, class: 'ms-1', method: :delete %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </nav>

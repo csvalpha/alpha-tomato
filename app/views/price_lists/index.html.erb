@@ -13,8 +13,8 @@
         <span>
           Hier worden de vijf nieuwste prijslijsten en alle producten getoond.
         </span>
-        <button class="btn btn-sm btn-primary" data-target="#editPriceListModal" data-toggle="modal" role="button">
-          <%= fa_icon 'plus', class: 'mr-1' %>
+        <button class="btn btn-sm btn-primary" data-bs-target="#editPriceListModal" data-bs-toggle="modal" role="button">
+          <%= fa_icon 'plus', class: 'me-1' %>
           Nieuwe prijslijst
         </button>
       </div>
@@ -92,10 +92,12 @@
         </tr>
         <tr>
           <td colspan="3">
-            <button class="btn btn-secondary btn-sm btn-block products-button-new" v-on:click.prevent="newProduct">
-              Voeg een nieuw product toe
-              <%= fa_icon 'plus-square', class: 'pl-2' %>
-            </button>
+            <div class="d-grid">
+              <button class="btn btn-secondary btn-sm products-button-new" v-on:click.prevent="newProduct">
+                Voeg een nieuw product toe
+                <%= fa_icon 'plus-square', class: 'ps-2' %>
+              </button>
+            </div>
           </td>
           <td colspan="6"></td>
         </tr>

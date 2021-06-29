@@ -13,7 +13,7 @@
         <template v-slot:cell(order_total)="row">
           <span class="pull-right">
             {{doubleToCurrency(row.item.order_total)}}
-            <i @click.stop="row.toggleDetails" :class="['order-history--details-expand', 'fa', 'fa-lg', 'pl-2', row.detailsShowing ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down']"></i>
+            <i @click.stop="row.toggleDetails" :class="['order-history--details-expand', 'fa', 'fa-lg', 'ps-2', row.detailsShowing ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down']"></i>
           </span>
         </template>
 
@@ -81,7 +81,7 @@ export default {
           key: 'order_total',
           label : 'Bedrag',
           sortable: false,
-          thClass: 'text-right pr-4'
+          thClass: 'text-end pe-4'
         }
       ]
     };

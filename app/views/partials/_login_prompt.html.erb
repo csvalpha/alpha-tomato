@@ -8,7 +8,10 @@
     <div class="card-body">
       <p class="card-text">
         Log in with a C.S.V. Alpha account.
-      </p><%= link_to('Sign in with C.S.V. Alpha', user_banana_oauth2_omniauth_authorize_path, class: 'btn btn-primary btn-block', method: :post) %>
+      </p>
+      <div class="d-grid">
+        <%= link_to('Sign in with C.S.V. Alpha', user_banana_oauth2_omniauth_authorize_path, class: 'btn btn-primary', method: :post) %>
+      </div>
     </div>
   </div>
 </div>

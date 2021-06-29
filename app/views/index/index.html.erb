@@ -27,7 +27,7 @@
       <div class="col-12 col-md-6 mb-2">
         <div class="card">
           <h4 class="card-header">
-            <%= fa_icon 'calendar', class: 'mr-1' %>
+            <%= fa_icon 'calendar', class: 'me-1' %>
             Komende activiteiten
           </h4>
           <div class="card-body">
@@ -35,7 +35,10 @@
               <p class="card-text">
                 <%= 'Er zijn geen activiteiten gepland. Maak er een aan op de activiteitenpagina.' %>
               </p>
-              <%= link_to 'Activiteiten', activities_path, class: 'btn btn-primary btn-block' %>
+              <div class="d-grid">
+                <%= link_to 'Activiteiten', activities_path, class: 'btn btn-primary' %>
+              </div>
+
             <% else %>
               <p class="card-text">
                 <%= 'Dit zijn de eerstvolgende vijf activiteiten:' %>
@@ -53,16 +56,18 @@
                   Direct naar het streepscherm
                 </h4>
                 <% @current_activities.each do |activity| %>
-                  <%= link_to order_screen_activity_url(activity), class: 'btn btn-primary btn-block' do %>
-                    <span>
-                      <%= fa_icon 'calculator', class: 'mr-1' %>
-                      <%= activity.title %>
-                      <br/>
-                      <small>
-                        <%= l activity.start_time %>
-                      </small>
-                    </span>
-                  <% end %>
+                  <div class="d-grid">
+                    <%= link_to order_screen_activity_url(activity), class: 'btn btn-primary' do %>
+                      <span>
+                        <%= fa_icon 'calculator', class: 'me-1' %>
+                        <%= activity.title %>
+                        <br/>
+                        <small>
+                          <%= l activity.start_time %>
+                        </small>
+                      </span>
+                    <% end %>
+                  </div>
                 <% end %>
               <% end %>
             <% end %>
@@ -80,10 +85,12 @@
               Je hebt geen speciale rollen binnen het streepsysteem;
               je kan hier wel je saldo en bestelgeschiedenis zien
             </p>
-            <%= link_to current_user, class: 'btn btn-primary btn-block' do %>
-              <%= fa_icon 'user', class: 'mr-1' %>
-              Naar mijn account
-            <% end %>
+            <div class="d-grid">
+              <%= link_to current_user, class: 'btn btn-primary' do %>
+                <%= fa_icon 'user', class: 'me-1' %>
+                Naar mijn account
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -94,7 +101,7 @@
 
     <div class="d-flex flex-column mt-4 py-4 align-items-center">
       <blockquote class="blockquote text-center">
-        <p class="mb-0">Vakmanschap is meesterschap
+        <p>Vakmanschap is meesterschap
         </p>
         <footer class="blockquote-footer">
           Gerard Brummer, Grolsch

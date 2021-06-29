@@ -9,7 +9,7 @@
       <div class="flash-text">
         <i :class="activeNotification.iconObject"/>
 
-        <span class="mr-4 font-weight-light">
+        <span class="me-4 font-weight-light">
           {{activeNotification.message}}
         </span>
 
@@ -45,7 +45,7 @@ export default {
     icons: {
       type: Object,
       default: () => ({
-        base:    'fa fa-lg mr-2',
+        base:    'fa fa-lg me-2',
         error:   'fa-exclamation-circle',
         success: 'fa-check-circle',
         info:    'fa-info-circle',

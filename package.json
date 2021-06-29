@@ -13,7 +13,7 @@
     "autosuggest-highlight": "^3.1",
     "axios": "^0.21.1",
     "babel-loader": "^8.0",
-    "bootstrap": "^4.4",
+    "bootstrap": "^5.0.1",
     "bootstrap-vue": "^2.6",
     "css-loader": "^5.2.6",
     "eslint-plugin-vue": "^7.10.0",

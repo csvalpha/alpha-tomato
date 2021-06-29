@@ -2,10 +2,10 @@
   <b-container slot="row-details" slot-scope="row">
     <b-row class="b-table-details--header px-2 py-1 mb-2">
       <b-col sm="5">product</b-col>
-      <b-col sm="2" class="text-right">aantal</b-col>
-      <b-col sm="3" class="text-right">prijs per stuk</b-col>
-      <b-col sm="2" class="text-right pr-3">
-        <span :class="editable ? 'pr-3' : ''">totaal</span>
+      <b-col sm="2" class="text-end">aantal</b-col>
+      <b-col sm="3" class="text-end">prijs per stuk</b-col>
+      <b-col sm="2" class="text-end pe-3">
+        <span :class="editable ? 'pe-3' : ''">totaal</span>
       </b-col>
     </b-row>
     <b-row v-for="orderRow in order.order_rows" class="b-table-details--item px-2" :key="orderRow.id">
@@ -15,7 +15,7 @@
           <small class="text-danger"><em>{{orderRowErrors[orderRow.id]}}</em></small>
         </div>
       </b-col>
-      <b-col sm="2" class="text-right">
+      <b-col sm="2" class="text-end">
         <template v-if="editable && orderRow.editing">
           <i @click="increaseProductCount(orderRow)"
              class="fa fa-plus-square-o order-history--item-count"></i>
@@ -27,14 +27,14 @@
           {{orderRow.product_count}}
         </template>
       </b-col>
-      <b-col sm="3" class="text-right">
+      <b-col sm="3" class="text-end">
         {{doubleToCurrency(orderRow.price_per_product)}}
       </b-col>
-      <b-col sm="2" :class="['text-right', editable ? 'pr-1' : 'pr-3']">
+      <b-col sm="2" :class="['text-end', editable ? 'pe-1' : 'pe-3']">
         {{doubleToCurrency(orderRow.product_count * orderRow.price_per_product)}}
         <template v-if="editable">
-          <i v-if="orderRow.editing" @click="saveOrderRow(orderRow)" class="order-history--item-save fa fa-save pl-3"></i>
-          <i v-else @click="editOrderRow(orderRow)" class="order-history--item-edit fa fa-pencil pl-3"></i>
+          <i v-if="orderRow.editing" @click="saveOrderRow(orderRow)" class="order-history--item-save fa fa-save ps-3"></i>
+          <i v-else @click="editOrderRow(orderRow)" class="order-history--item-edit fa fa-pencil ps-3"></i>
         </template>
       </b-col>
     </b-row>
